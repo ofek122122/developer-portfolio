@@ -216,13 +216,23 @@ function WorkRow({ project: p, locale, index, t, onHover }: WorkRowProps) {
             {hasLink ? (
               <span className="mono-ltr inline-flex items-baseline gap-2 text-[11px] font-medium uppercase tracking-[0.2em] text-ink transition-colors group-hover:text-signal">
                 <span className="link-rule">
-                  {p.liveUrl ? t('projects.live') : t('projects.repo')}
+                  {t(
+                    p.status === 'live'
+                      ? 'projects.live'
+                      : p.status === 'repo'
+                        ? 'projects.repo'
+                        : 'projects.inDev',
+                  )}
                 </span>
                 <ArrowUpRight className="h-3.5 w-3.5 translate-y-[1px] transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 rtl:-scale-x-100" />
               </span>
             ) : (
               <span className="mono-ltr text-[11px] font-medium uppercase tracking-[0.2em] text-ink-soft">
-                {t('projects.private')}
+                {t(
+                  p.status === 'in-dev'
+                    ? 'projects.inDev'
+                    : 'projects.private',
+                )}
               </span>
             )}
           </div>

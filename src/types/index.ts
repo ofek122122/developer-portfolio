@@ -5,6 +5,8 @@ export type Localized = {
   en: string
 }
 
+export type ProjectStatus = 'live' | 'in-dev' | 'repo' | 'private'
+
 export type Project = {
   id: string
   title: Localized
@@ -14,6 +16,8 @@ export type Project = {
   image: string
   liveUrl?: string
   repoUrl?: string
+  /** Public-facing status badge shown on the cover and work table. */
+  status: ProjectStatus
   year: number
   featured?: boolean
 }

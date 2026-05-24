@@ -6,7 +6,7 @@ import { Container } from '@/components/shared/Container'
 import { TextLink } from '@/components/shared/TextLink'
 import { Marquee } from '@/components/shared/Marquee'
 import { projects } from '@/data/projects'
-import type { Locale } from '@/types'
+import type { Locale, ProjectStatus } from '@/types'
 
 const NAME_LATIN = ['Ofek', 'Karavani']
 const NAME_HEBREW = ['אופק', 'קרוואני']
@@ -41,7 +41,7 @@ export function Hero() {
       projects.slice(0, 5).map((p, i) => ({
         num: String(i + 1).padStart(3, '0'),
         name: p.title[locale],
-        status: p.liveUrl ? 'live' : p.repoUrl ? 'repo' : 'private',
+        status: p.status,
       })),
     [locale],
   )
@@ -169,7 +169,14 @@ export function Hero() {
 interface SpecimenItem {
   num: string
   name: string
-  status: 'live' | 'repo' | 'private' | string
+  status: ProjectStatus
+}
+
+const STATUS_LABEL: Record<ProjectStatus, string> = {
+  live: 'Live ↗',
+  'in-dev': 'In dev',
+  repo: 'Repo',
+  private: 'Private',
 }
 
 function StudioCover({
@@ -243,14 +250,12 @@ function StudioCover({
                 className={
                   item.status === 'live'
                     ? 'text-signal'
-                    : 'text-paper/40'
+                    : item.status === 'in-dev'
+                      ? 'text-paper/70'
+                      : 'text-paper/40'
                 }
               >
-                {item.status === 'live'
-                  ? 'Live ↗'
-                  : item.status === 'repo'
-                    ? 'Repo'
-                    : 'Private'}
+                {STATUS_LABEL[item.status]}
               </span>
             </li>
           ))}

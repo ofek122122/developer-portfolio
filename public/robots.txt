@@ -1,0 +1,10 @@
+# Ofek Karavani — Developer Portfolio
+# Allow all crawlers; nothing to hide.
+
+User-agent: *
+Allow: /
+
+# Disallow the contact endpoint — not useful to index.
+Disallow: /api/
+
+Sitemap: https://ofekkaravani.com/sitemap.xml

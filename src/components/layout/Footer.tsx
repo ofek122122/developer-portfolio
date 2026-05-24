@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { Container } from '@/components/shared/Container'
+import { LegalDialog } from '@/components/shared/LegalDialog'
 import { LanguageToggle } from './LanguageToggle'
 
 const NAV_KEYS = ['about', 'projects', 'services', 'testimonials', 'contact'] as const
@@ -84,10 +85,14 @@ export function Footer() {
       </Container>
 
       <div className="border-t border-ink/15">
-        <Container className="mono-ltr flex flex-col items-center justify-between gap-3 py-5 text-[11px] uppercase tracking-[0.18em] text-ink-soft sm:flex-row">
+        <Container className="mono-ltr flex flex-col items-center justify-between gap-4 py-5 text-[11px] uppercase tracking-[0.18em] text-ink-soft sm:flex-row">
           <span>© {year} OFEK KARAVANI · {t('footer.copyright')}</span>
-          <div className="flex items-center gap-6">
-            <span>{t('footer.builtBy')}</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+            <LegalDialog kind="privacy" tone="muted" />
+            <span aria-hidden="true" className="text-ink/25">/</span>
+            <LegalDialog kind="accessibility" tone="muted" />
+            <span aria-hidden="true" className="hidden text-ink/25 sm:inline">/</span>
+            <span className="hidden sm:inline">{t('footer.builtBy')}</span>
             <LanguageToggle />
           </div>
         </Container>

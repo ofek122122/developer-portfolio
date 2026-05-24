@@ -61,7 +61,8 @@
     },
     "live": "Live",
     "repo": "Repo",
-    "private": "Private"
+    "private": "Private",
+    "inDev": "In dev"
   },
   "services": {
     "title": "What I make.",
@@ -112,5 +113,53 @@
     "quickLinks": "Index",
     "copyright": "All rights reserved",
     "builtBy": "Designed & built by Ofek Karavani"
+  },
+  "legal": {
+    "close": "Close",
+    "updated": "Updated 2026-05-24",
+    "privacy": {
+      "trigger": "Privacy",
+      "title": "Privacy notice",
+      "intro": "Plain-language summary of what this site does with your information. No dark patterns, no hidden data flows.",
+      "collectTitle": "What this site collects",
+      "collectItems": [
+        "Contact form — your name, email, and message. These are emailed to me through Resend (resend.com) and arrive in my inbox. They are not stored in any database; the only persistent copy is in my email.",
+        "localStorage — your selected language (key: portfolio_lang) so the site remembers your choice between visits. Stored only in your browser; never transmitted."
+      ],
+      "noTitle": "What this site does NOT do",
+      "noItems": [
+        "No analytics, no third-party tracking, no advertising cookies, no fingerprinting.",
+        "No social media trackers, no remarketing pixels, no behavioural profiling.",
+        "Fonts are loaded from the local bundle (self-hosted), not from external CDNs."
+      ],
+      "thirdPartyTitle": "Third parties involved",
+      "thirdPartyItems": [
+        "Vercel — hosting (vercel.com). Standard server access logs apply.",
+        "Resend — email delivery (resend.com), only when you submit the contact form."
+      ],
+      "rightsTitle": "Your rights",
+      "rightsBody": "Under Israel's Privacy Protection Law (1981) and the EU GDPR, you can request access, correction, or deletion of any data you have sent through the contact form. Email ofek.karavani1@gmail.com and I will action it within 30 days."
+    },
+    "accessibility": {
+      "trigger": "Accessibility",
+      "title": "Accessibility statement",
+      "intro": "This site is built to meet the WCAG 2.2 AA standard and the Israel Equal Rights for Persons with Disabilities Regulations (Service Accessibility Adjustments), 5773-2013.",
+      "featuresTitle": "Accessibility features",
+      "featuresItems": [
+        "Semantic landmarks: header, nav, main, section, footer.",
+        "Keyboard navigable. Visible focus rings on every interactive element.",
+        "Body text and interactive elements meet AA color contrast.",
+        "prefers-reduced-motion respected — entrance animations and the marquee stop automatically.",
+        "Image alt text and ARIA labels on interactive controls.",
+        "Bilingual interface (Hebrew + English) with full RTL support.",
+        "Mobile-first responsive layout, tested down to 360 px."
+      ],
+      "knownTitle": "Known limitations",
+      "knownBody": "Some Framer Motion section transitions are decorative and may not be described to screen readers. The desktop project hover preview is not surfaced on touch devices — those devices see an inline thumbnail instead. I am continuing to improve coverage.",
+      "reportTitle": "Report a problem",
+      "reportBody": "If you encounter an accessibility issue, please email ofek.karavani1@gmail.com with the page URL and a description of the problem. I will respond within a few business days and remediate.",
+      "coordinatorTitle": "Accessibility coordinator",
+      "coordinatorBody": "Ofek Karavani — ofek.karavani1@gmail.com — 052-561-2414"
+    }
   }
 }
