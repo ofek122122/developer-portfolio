@@ -64,9 +64,9 @@ export function Hero() {
           </span>
         </motion.div>
 
-        <div className="grid gap-x-10 gap-y-12 pt-10 md:grid-cols-12 md:pt-16">
+        <div className="grid gap-x-10 gap-y-12 pt-10 lg:grid-cols-12 lg:pt-16">
           {/* Type mass */}
-          <div className="relative md:col-span-7">
+          <div className="relative lg:col-span-7">
             <motion.h1
               style={{ y: nameY, opacity: nameOpacity }}
               className="font-display text-[clamp(4rem,15vw,12rem)] font-medium leading-[0.84] tracking-tightest"
@@ -127,7 +127,7 @@ export function Hero() {
             initial={reduced ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="md:col-span-5"
+            className="mx-auto w-full max-w-md lg:col-span-5 lg:mx-0 lg:max-w-none"
           >
             <StudioCover
               specimen={specimen}

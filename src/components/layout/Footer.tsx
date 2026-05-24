@@ -91,8 +91,8 @@ export function Footer() {
             <LegalDialog kind="privacy" tone="muted" />
             <span aria-hidden="true" className="text-ink/25">/</span>
             <LegalDialog kind="accessibility" tone="muted" />
-            <span aria-hidden="true" className="hidden text-ink/25 sm:inline">/</span>
-            <span className="hidden sm:inline">{t('footer.builtBy')}</span>
+            <span aria-hidden="true" className="hidden text-ink/25 lg:inline">/</span>
+            <span className="hidden lg:inline">{t('footer.builtBy')}</span>
             <LanguageToggle />
           </div>
         </Container>

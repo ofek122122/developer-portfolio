@@ -48,7 +48,7 @@ export function Header() {
           <span className="mono-ltr text-base font-medium tracking-tight text-ink">
             OK
           </span>
-          <span className="hidden text-sm font-medium tracking-tight text-ink-soft transition-colors group-hover:text-ink sm:inline">
+          <span className="hidden text-sm font-medium tracking-tight text-ink-soft transition-colors group-hover:text-ink lg:inline">
             Ofek Karavani
           </span>
         </a>

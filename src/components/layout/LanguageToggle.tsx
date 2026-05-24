@@ -47,7 +47,7 @@ export function LanguageToggle({ className, tone = 'ink' }: LanguageToggleProps)
               aria-pressed={isActive}
               onClick={() => void i18n.changeLanguage(code)}
               className={cn(
-                'px-0.5 transition-colors duration-150',
+                '-my-2 inline-flex items-center px-2 py-2 transition-colors duration-150',
                 'focus-visible:outline-none focus-visible:[outline:2px_solid_var(--signal)] focus-visible:outline-offset-2',
                 isActive
                   ? tone === 'ink'
