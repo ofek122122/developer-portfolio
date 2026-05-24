@@ -191,7 +191,15 @@ function StudioCover({
   shortYear: string
 }) {
   return (
-    <div className="relative aspect-[4/5] w-full overflow-hidden border border-ink/20 bg-ink text-paper">
+    // The cover reads as a typographic specimen — magazine cover, not body
+    // content — so we lock it to LTR. This keeps "Issue/{year}" in the right
+    // order, the signal corner-marker on the end side, and the row layout
+    // (index / name / status) consistent across both languages. Hebrew project
+    // names still bidi-render their characters correctly inside each row.
+    <div
+      dir="ltr"
+      className="relative aspect-[4/5] w-full overflow-hidden border border-ink/20 bg-ink text-paper"
+    >
       {/* Faint hairline grid — the working surface */}
       <div
         aria-hidden="true"
