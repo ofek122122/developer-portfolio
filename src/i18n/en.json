@@ -1,0 +1,116 @@
+{
+  "nav": {
+    "logoAlt": "Ofek Karavani — Logo",
+    "links": {
+      "about": "Studio",
+      "projects": "Work",
+      "services": "Practice",
+      "testimonials": "Words",
+      "contact": "Contact"
+    },
+    "contactCta": "Contact"
+  },
+  "index": {
+    "label": "Section index",
+    "intro": "Intro",
+    "studio": "Studio",
+    "work": "Selected work",
+    "practice": "Practice",
+    "words": "Words",
+    "contact": "Contact"
+  },
+  "hero": {
+    "eyebrowLeft": "Freelance · Full-stack",
+    "eyebrowRight": "Ashdod, IL — 2024",
+    "headline": "Ofek Karavani",
+    "role": "Full-stack developer building websites, apps & software.",
+    "sub": "I work with Israeli businesses on landing pages, e-commerce, web apps, and custom systems. Open to new ideas.",
+    "ctaPrimary": "Start a project",
+    "ctaSecondary": "See selected work",
+    "imageAlt": "Selected work — Nest Rooftop"
+  },
+  "about": {
+    "title": "Studio",
+    "headline": "A small studio of one.",
+    "headlineTail": "Building since 2021.",
+    "bio1": "I'm Ofek Karavani, a freelance full-stack developer based in Ashdod, Israel. I work with businesses, founders, and creatives — building everything from fast landing pages to e-commerce stores, custom systems, and AI-powered web apps.",
+    "bio2": "I care about three things: that the build is well-engineered underneath, that it ships fast, and that the surface feels considered. Each project is a direct collaboration — no agency layer, no middlemen.",
+    "techTitle": "Stack",
+    "stats": {
+      "projects": "Projects",
+      "clients": "Happy clients",
+      "experience": "Years"
+    },
+    "meta": {
+      "based": "Based",
+      "speaks": "Speaks",
+      "years": "In practice",
+      "shipped": "Shipped",
+      "openTo": "Open to"
+    }
+  },
+  "projects": {
+    "title": "Selected work.",
+    "subtitle": "A small selection of recent client and personal projects.",
+    "filter": {
+      "all": "All",
+      "landingPage": "Landing",
+      "website": "Site",
+      "webApp": "App",
+      "system": "System"
+    },
+    "live": "Live",
+    "repo": "Repo",
+    "private": "Private"
+  },
+  "services": {
+    "title": "What I make.",
+    "subtitle": "Five things I do most of, and a sixth that's wide open. Tap a row for the detail.",
+    "priceFrom": "From",
+    "priceNote": "Excl. VAT",
+    "byQuote": "By quote",
+    "contactCta": "Get in touch",
+    "elseLabel": "Something else"
+  },
+  "testimonials": {
+    "title": "Words.",
+    "empty": "Client words are on the way. Until then — the work speaks."
+  },
+  "contact": {
+    "title": "Contact",
+    "headline": "Let's talk.",
+    "headlinePunct": " →",
+    "subtitle": "Tell me a little about what you're building. I read every message and reply within a day.",
+    "form": {
+      "name": "Name",
+      "namePlaceholder": "Your name",
+      "email": "Email",
+      "emailPlaceholder": "you@example.com",
+      "message": "About the project",
+      "messagePlaceholder": "What are you building, who is it for, and when do you need it?",
+      "submit": "Send",
+      "sending": "Sending…",
+      "success": "Sent. I'll get back to you within a day.",
+      "error": "Didn't go through. Try again or email me directly.",
+      "validation": {
+        "nameRequired": "Please add your name",
+        "emailRequired": "Please add an email",
+        "emailInvalid": "That doesn't look like an email",
+        "messageRequired": "Please add a short message"
+      }
+    },
+    "channels": {
+      "title": "Or reach me directly",
+      "email": "Email",
+      "phone": "WhatsApp",
+      "location": "Location",
+      "locationValue": "Ashdod, Israel"
+    }
+  },
+  "footer": {
+    "tagline": "Independent full-stack development from Ashdod. Websites, apps, custom systems.",
+    "quickLinks": "Index",
+    "copyright": "All rights reserved",
+    "builtBy": "Designed & built by Ofek Karavani"
+  }
+}
