@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useMemo, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useReducedMotion } from '@/hooks/useReducedMotion'
@@ -16,7 +16,6 @@ export function Hero() {
   const locale: Locale = i18n.language.startsWith('he') ? 'he' : 'en'
   const reduced = useReducedMotion()
   const ref = useRef<HTMLElement>(null)
-  const [imageOk, setImageOk] = useState(true)
 
   // Scroll-driven parallax for the masthead — slower than the page
   const { scrollY } = useScroll()
@@ -25,36 +24,27 @@ export function Hero() {
 
   const nameWords = locale === 'he' ? NAME_HEBREW : NAME_LATIN
 
+  const fullYear = new Date().getFullYear()
+  const shortYear = String(fullYear).slice(-2)
+
   // Marquee items — recent projects + year
   const marqueeItems = [
-    `Selected work — ${new Date().getFullYear()}`,
+    `Selected work — ${fullYear}`,
     ...projects.map((p) => p.title[locale]),
     `Available · ${t('contact.channels.locationValue')}`,
   ]
 
-  // Subtle mouse parallax on the image
-  const imageRef = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    if (reduced || !imageRef.current) return
-    const el = imageRef.current
-    const onMove = (e: MouseEvent) => {
-      const rect = el.getBoundingClientRect()
-      const dx = (e.clientX - (rect.left + rect.width / 2)) / rect.width
-      const dy = (e.clientY - (rect.top + rect.height / 2)) / rect.height
-      el.style.setProperty('--px', `${dx * 8}px`)
-      el.style.setProperty('--py', `${dy * 8}px`)
-    }
-    const reset = () => {
-      el.style.setProperty('--px', '0px')
-      el.style.setProperty('--py', '0px')
-    }
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseleave', reset)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseleave', reset)
-    }
-  }, [reduced])
+  // Specimen list rendered inside the well — derived from the same data the
+  // Selected Work section uses so the hero stays truthful as projects change.
+  const specimen = useMemo(
+    () =>
+      projects.slice(0, 5).map((p, i) => ({
+        num: String(i + 1).padStart(3, '0'),
+        name: p.title[locale],
+        status: p.liveUrl ? 'live' : p.repoUrl ? 'repo' : 'private',
+      })),
+    [locale],
+  )
 
   return (
     <section ref={ref} id="hero" className="relative overflow-hidden bg-paper">
@@ -70,7 +60,7 @@ export function Hero() {
             / {t('hero.eyebrowLeft', 'Freelance · Full-stack')}
           </span>
           <span className="hidden sm:inline">
-            {t('hero.eyebrowRight', 'Ashdod, IL — 2024')}
+            {t('hero.eyebrowRight', 'Ashdod, IL')} — {fullYear}
           </span>
         </motion.div>
 
@@ -132,52 +122,19 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* Image well */}
+          {/* Studio cover — typographic specimen replaces the website screenshot */}
           <motion.div
             initial={reduced ? false : { opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
             className="md:col-span-5"
           >
-            <div
-              ref={imageRef}
-              className="relative aspect-[4/5] w-full overflow-hidden border border-ink/20 bg-ink"
-              style={{ ['--px' as string]: '0px', ['--py' as string]: '0px' }}
-            >
-              {imageOk ? (
-                <img
-                  src="/images/hero.jpg"
-                  alt={t('hero.imageAlt', 'Selected work — Nest Rooftop')}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out"
-                  style={{
-                    transform: 'translate(var(--px), var(--py)) scale(1.04)',
-                  }}
-                  onError={() => setImageOk(false)}
-                />
-              ) : (
-                <TypographicFallback />
-              )}
-
-              {/* Metadata overlay top */}
-              <div className="absolute inset-x-0 top-0 flex items-center justify-between p-4">
-                <span className="mono-ltr bg-paper px-2 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-ink">
-                  /001
-                </span>
-                <span className="mono-ltr bg-paper px-2 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-ink">
-                  2024
-                </span>
-              </div>
-
-              {/* Caption overlay bottom */}
-              <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-2 p-4">
-                <span className="mono-ltr bg-paper px-2 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-ink">
-                  Nest Rooftop
-                </span>
-                <span className="mono-ltr bg-signal px-2 py-1 text-[10px] font-medium uppercase tracking-[0.2em] text-ink">
-                  Live
-                </span>
-              </div>
-            </div>
+            <StudioCover
+              specimen={specimen}
+              reduced={reduced}
+              fullYear={fullYear}
+              shortYear={shortYear}
+            />
           </motion.div>
         </div>
       </Container>
@@ -209,22 +166,110 @@ export function Hero() {
   )
 }
 
-function TypographicFallback() {
+interface SpecimenItem {
+  num: string
+  name: string
+  status: 'live' | 'repo' | 'private' | string
+}
+
+function StudioCover({
+  specimen,
+  reduced,
+  fullYear,
+  shortYear,
+}: {
+  specimen: SpecimenItem[]
+  reduced: boolean
+  fullYear: number
+  shortYear: string
+}) {
   return (
-    <div className="relative h-full w-full bg-ink text-paper">
-      <div className="absolute inset-0 flex flex-col justify-between p-8">
-        <div className="mono-ltr text-[10px] uppercase tracking-[0.22em] text-paper/60">
-          Image well — replace with{' '}
-          <code className="text-signal">/public/images/hero.jpg</code>
+    <div className="relative aspect-[4/5] w-full overflow-hidden border border-ink/20 bg-ink text-paper">
+      {/* Faint hairline grid — the working surface */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            'linear-gradient(var(--paper) 1px, transparent 1px), linear-gradient(90deg, var(--paper) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* Signal corner-marker — a small accent square that anchors the eye */}
+      <div
+        aria-hidden="true"
+        className="absolute end-0 top-0 h-10 w-10 bg-signal"
+      />
+
+      <div className="relative flex h-full flex-col justify-between p-6 sm:p-7">
+        {/* Top — masthead */}
+        <div>
+          <div className="mono-ltr flex items-center justify-between text-[10px] font-medium uppercase tracking-[0.22em] text-paper/55">
+            <span>/ Studio · Bureau</span>
+            <span className="text-ink">·</span>
+          </div>
+          <div className="mt-5 flex items-baseline gap-3">
+            <span className="font-display text-[clamp(3.5rem,11vw,6.5rem)] font-medium leading-[0.85] tracking-tightest text-paper">
+              Issue
+            </span>
+            <span className="font-display text-[clamp(3.5rem,11vw,6.5rem)] font-medium leading-[0.85] tracking-tightest text-signal">
+              /{shortYear}
+            </span>
+          </div>
+          <div className="mono-ltr mt-2 text-[10px] font-medium uppercase tracking-[0.22em] text-paper/45">
+            A working catalog · {fullYear}
+          </div>
         </div>
-        <div className="flex flex-1 items-center justify-center">
-          <span className="font-display text-[15rem] font-medium leading-none text-paper/90">
-            OK
+
+        {/* Middle — emphasis rule */}
+        <div aria-hidden="true" className="my-3 flex items-center gap-3">
+          <span className="h-px flex-1 bg-paper/25" />
+          <span className="mono-ltr text-[10px] uppercase tracking-[0.22em] text-paper/45">
+            005 ·
           </span>
         </div>
-        <div className="mono-ltr flex items-center justify-between text-[10px] uppercase tracking-[0.22em] text-paper/60">
-          <span>Recommended 1200 × 1500</span>
-          <span className="text-signal">●</span>
+
+        {/* Bottom — specimen list of recent work */}
+        <ul role="list" className="flex flex-col">
+          {specimen.map((item) => (
+            <li
+              key={item.num}
+              className="mono-ltr flex items-baseline justify-between gap-3 border-t border-paper/15 py-[7px] text-[10px] font-medium uppercase tracking-[0.18em] last:border-b last:border-paper/15"
+            >
+              <span className="w-9 shrink-0 text-paper/40">/{item.num}</span>
+              <span className="flex-1 truncate text-paper">{item.name}</span>
+              <span
+                className={
+                  item.status === 'live'
+                    ? 'text-signal'
+                    : 'text-paper/40'
+                }
+              >
+                {item.status === 'live'
+                  ? 'Live ↗'
+                  : item.status === 'repo'
+                    ? 'Repo'
+                    : 'Private'}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        {/* Bottom corner — availability pulse */}
+        <div className="mt-3 flex items-center justify-between">
+          <span className="mono-ltr text-[10px] font-medium uppercase tracking-[0.22em] text-paper/45">
+            Status
+          </span>
+          <span className="mono-ltr flex items-center gap-2 text-[10px] font-medium uppercase tracking-[0.22em] text-signal">
+            <motion.span
+              aria-hidden="true"
+              className="inline-block h-1.5 w-1.5 bg-signal"
+              animate={reduced ? undefined : { opacity: [1, 0.35, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+            />
+            Available
+          </span>
         </div>
       </div>
     </div>
