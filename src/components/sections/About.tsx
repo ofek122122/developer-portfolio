@@ -23,6 +23,7 @@ const META: { labelKey: string; fallback: string; value: string; mono?: boolean 
   { labelKey: 'about.meta.years', fallback: 'In practice', value: '3+ years', mono: true },
   { labelKey: 'about.meta.shipped', fallback: 'Shipped', value: '15+ projects', mono: true },
   { labelKey: 'about.meta.openTo', fallback: 'Open to', value: 'Most things', mono: false },
+  { labelKey: 'about.meta.certified', fallback: 'Certified', value: 'Top 1% Xplace', mono: true },
 ]
 
 export function About() {

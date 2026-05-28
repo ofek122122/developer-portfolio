@@ -25,6 +25,12 @@ const CHANNELS = [
     display: '052-561-2414',
   },
   {
+    labelKey: 'contact.channels.xplace',
+    fallback: 'Xplace',
+    href: 'https://www.xplace.com/u/ofekkaravani1',
+    display: 'Top 1% · Certified',
+  },
+  {
     labelKey: 'contact.channels.location',
     fallback: 'Location',
     href: undefined as string | undefined,

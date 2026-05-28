@@ -46,7 +46,8 @@
       "speaks": "Speaks",
       "years": "In practice",
       "shipped": "Shipped",
-      "openTo": "Open to"
+      "openTo": "Open to",
+      "certified": "Certified"
     }
   },
   "projects": {
@@ -105,7 +106,8 @@
       "email": "Email",
       "phone": "WhatsApp",
       "location": "Location",
-      "locationValue": "Ashdod, Israel"
+      "locationValue": "Ashdod, Israel",
+      "xplace": "Xplace"
     }
   },
   "footer": {

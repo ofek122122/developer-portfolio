@@ -46,7 +46,8 @@
       "speaks": "שפות",
       "years": "ותק",
       "shipped": "פרויקטים",
-      "openTo": "פתוח ל-"
+      "openTo": "פתוח ל-",
+      "certified": "מאומת"
     }
   },
   "projects": {
@@ -105,7 +106,8 @@
       "email": "אימייל",
       "phone": "וואטסאפ",
       "location": "מיקום",
-      "locationValue": "אשדוד, ישראל"
+      "locationValue": "אשדוד, ישראל",
+      "xplace": "Xplace"
     }
   },
   "footer": {

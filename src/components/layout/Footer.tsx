@@ -8,6 +8,7 @@ const NAV_KEYS = ['about', 'projects', 'services', 'testimonials', 'contact'] as
 const CHANNELS = [
   { label: 'Email', href: 'mailto:ofek.karavani1@gmail.com', display: 'ofek.karavani1@gmail.com' },
   { label: 'WhatsApp', href: 'https://wa.me/972525612414', display: '052-561-2414' },
+  { label: 'Xplace', href: 'https://www.xplace.com/u/ofekkaravani1', display: 'Top 1% · Certified' },
   { label: 'GitHub', href: 'https://github.com/ofek122122', display: '@ofek122122' },
 ]
 
